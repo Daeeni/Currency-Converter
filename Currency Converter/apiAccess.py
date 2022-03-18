@@ -5,12 +5,10 @@ def getAccessKey():
     try:
         with open("accessKey.cfg") as f:
             line=f.readline()
-            if(line == "!TestKey!"):
-                print("The Key found in 'accessKey.cfg' is not set.")
-            else:
-                return line
+            return line
     except FileNotFoundError:
         print("'accessKey.cfg' not found in current directory")
+        return "Invalid-API-Key"
 
 def getJsonCurrenciesShort():
     try:

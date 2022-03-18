@@ -3,6 +3,7 @@ from apiAccess import *
 from dataAccess import *
 
 def calculateSpecific():
+    printCurrencies(getJsonCurrenciesFull())
     print("Enter Currency.")
     fromCur = input()
     print("Calculate to?")
