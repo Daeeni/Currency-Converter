@@ -46,7 +46,21 @@ def getDatabaseList(fromP : str):
     return access
 
 def getJsonResponse(requestStr : str):
-    req = requests.get(requestStr, verify = False)
+    try:
+        req = requests.get(requestStr, verify = False, timeout=3)
+        req.raise_for_status()
+    except requests.exceptions.HTTPError as errh:
+        print ("Http Error:",errh)
+        quit()
+    except requests.exceptions.ConnectionError as errc:
+        print ("Error Connecting:",errc)
+        quit()
+    except requests.exceptions.Timeout as errt:
+        print ("Timeout Error:",errt)
+        quit()
+    except requests.exceptions.RequestException as err:
+        print ("OOps: Something Else",err)
+        quit()
     return req.json()
 
 def getJsonResponseList(fromP : str):
